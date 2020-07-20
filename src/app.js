@@ -15,8 +15,8 @@ let io = new SocketIO(server);
 const port = process.env.PORT || 4000;
 
 // CONNECT TO DATABASE
-mongoose.connect(config.localUrl, { useNewUrlParser: true });
-//mongoose.connect(config.remoteUrl, { useNewUrlParser: true });
+//mongoose.connect(config.localUrl, { useNewUrlParser: true });
+mongoose.connect(config.remoteUrl, { useNewUrlParser: true });
 mongoose.connection.once("open", () => {
   console.log("Database Connection made Successfully.");
 });

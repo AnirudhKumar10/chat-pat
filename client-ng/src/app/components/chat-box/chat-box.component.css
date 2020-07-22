@@ -1,0 +1,24 @@
+ul {
+  list-style: none;
+  padding: 0;
+}
+
+ul li {
+  margin: 4px;
+  border-radius: 8px;
+}
+
+.sender {
+  background-color: #ccc;
+  padding: 2px;
+  width: 70%;
+  margin-left: auto;
+  border-radius: 4px;
+}
+
+.reciever {
+  background-color: rgb(180, 181, 255);
+  padding: 2px;
+  width: 70%;
+  border-radius: 4px;
+}

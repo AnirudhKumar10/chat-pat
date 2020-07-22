@@ -1,5 +1,5 @@
 export default {
   remoteUrl:
-    "mongodb+srv://admin:admin123@cluster0-oalb1.mongodb.net/chatdb?retryWrites=true&w=majority",
+    "<ADD A MONGODB REMOTE URL>",
   localUrl: "mongodb://localhost/chatdb",
 };

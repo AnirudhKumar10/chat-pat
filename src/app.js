@@ -17,8 +17,16 @@ let io = new SocketIO(server);
 const port = process.env.PORT || 4000;
 
 // CONNECT TO DATABASE
-//mongoose.connect(config.localUrl, { useNewUrlParser: true });
-mongoose.connect(config.remoteUrl, { useNewUrlParser: true });
+
+/** 
+ * Use this if you want to use remote url
+ * mongoose.connect(config.remoteUrl, { useNewUrlParser: true });
+ */
+
+/** 
+ * Use this if you want to use remote url
+ * mongoose.connect(config.localUrl, { useNewUrlParser: true });
+ */
 mongoose.connection.once("open", () => {
   console.log("Database Connection made Successfully.");
 });
@@ -61,7 +69,7 @@ io.on("connection", (socket) => {
       sender_id: req.body.sender_id,
       rcv_id: req.body.rcv_id,
     });
-    
+
     io.emit("msg", message);
     message
       .save()

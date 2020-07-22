@@ -9,14 +9,16 @@ import cors from "cors";
 import userRoute from "./routes/user";
 import messageRoute from "./routes/message";
 import config from "./configs/database";
+import { checkAuth } from "./middlewares/check-auth";
+import Message from "./models/message";
 
 let server = http.Server(app);
 let io = new SocketIO(server);
 const port = process.env.PORT || 4000;
 
 // CONNECT TO DATABASE
-//mongoose.connect(config.localUrl, { useNewUrlParser: true });
-mongoose.connect(config.remoteUrl, { useNewUrlParser: true });
+mongoose.connect(config.localUrl, { useNewUrlParser: true });
+//mongoose.connect(config.remoteUrl, { useNewUrlParser: true });
 mongoose.connection.once("open", () => {
   console.log("Database Connection made Successfully.");
 });
@@ -38,28 +40,41 @@ app.use("/api/users", userRoute);
 app.use("/api/messages", messageRoute);
 
 // INDEX ROUTES
-app.get("/", (req, res) => {
-  res.send("invaild endpoint");
-});
+//app.get("/", (req, res) => {
+//  res.send("invaild endpoint");
+//});
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "public/index.html"));
-});
+//app.get("*", (req, res) => {
+//  res.sendFile(path.join(__dirname, "public/index.html"));
+//});
 
 server.listen(port, () => {
   console.log(`Server started at : ${port}`);
 });
 
-/*
 io.on("connection", (socket) => {
   console.log("A user connected" + socket.id);
 
-  socket.join("room");
-  io.sockets.in("room").emit("connectToRoom", "You are in room");
+  app.post("/api/messages/", checkAuth, (req, res, next) => {
+    let message = new Message({
+      msg: req.body.msg,
+      sender_id: req.body.sender_id,
+      rcv_id: req.body.rcv_id,
+    });
+    
+    io.emit("msg", message);
+    message
+      .save()
+      .then(() => {
+        res.status(200).json({ report: "Message Send" });
+      })
+      .catch((err) => {
+        res.status(400).json({ report: "Message Failed" });
+      });
+  });
 
   //Whenever someone disconnects this piece of code executed
   socket.on("disconnect", () => {
     console.log("A user disconnected");
   });
 });
-*/

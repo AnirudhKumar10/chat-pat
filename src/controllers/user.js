@@ -57,7 +57,7 @@ export const register = (req, res, next) => {
             });
           })
           .catch(() => {
-            res.status(201).json({ message: "Error while creating record." });
+            res.status(409).json({ message: "Error while creating record." });
           });
       }
     }

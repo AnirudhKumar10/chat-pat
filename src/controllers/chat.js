@@ -1,5 +1,6 @@
 import Message from "../models/message";
 
+/*
 export const addMessage = (req, res) => {
   let message = new Message({
     msg: req.body.msg,
@@ -15,6 +16,7 @@ export const addMessage = (req, res) => {
       res.status(400).json({ report: "Message Failed" });
     });
 };
+*/
 
 export const getMessage = (req, res) => {
   Message.find({

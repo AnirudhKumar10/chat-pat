@@ -4,7 +4,7 @@ import { addMessage, getMessage } from "../controllers/chat";
 
 const route = express.Router();
 
-route.post("/", checkAuth, addMessage);
+//route.post("/", checkAuth, addMessage);
 
 route.post("/:rcv_id", checkAuth, getMessage);
 

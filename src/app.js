@@ -18,11 +18,9 @@ const port = process.env.PORT || 4000;
 
 // CONNECT TO DATABASE
 
-/** 
- * Use this if you want to use remote url
- * mongoose.connect(config.remoteUrl, { useNewUrlParser: true });
- */
-
+ 
+// Use this if you want to use remote url
+mongoose.connect(config.remoteUrl, { useNewUrlParser: true });
 /** 
  * Use this if you want to use remote url
  * mongoose.connect(config.localUrl, { useNewUrlParser: true });
@@ -48,13 +46,13 @@ app.use("/api/users", userRoute);
 app.use("/api/messages", messageRoute);
 
 // INDEX ROUTES
-//app.get("/", (req, res) => {
-//  res.send("invaild endpoint");
-//});
+app.get("/", (req, res) => {
+  res.send("invaild endpoint");
+});
 
-//app.get("*", (req, res) => {
-//  res.sendFile(path.join(__dirname, "public/index.html"));
-//});
+app.get("*", (req, res) => {
+  res.sendFile(path.join(__dirname, "public/index.html"));
+});
 
 server.listen(port, () => {
   console.log(`Server started at : ${port}`);

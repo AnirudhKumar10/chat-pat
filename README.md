@@ -1,8 +1,6 @@
 # Node.js & React.js Chat Application
 
-- Frontend:  https://nodejs-react-chat-app-frontend.herokuapp.com/
-
-- Backend: https://reactjs-nodejs-chat-backend.herokuapp.com/
+- https://nodejs-react-chat-app-frontend.herokuapp.com/
 
 ## Frontend UI/UX
 
